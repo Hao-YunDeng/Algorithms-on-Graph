@@ -4,10 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConnectedComponents {
+	static boolean[] visited;
+	
     private static int numberOfComponents(ArrayList<Integer>[] adj) {
         int result = 0;
         //write your code here
+        for(int i = 0; i < adj.length; i++) {
+        	if(!visited[i]) {
+        		explore(i, adj);
+        		result++;
+        	}
+        }
         return result;
+    }
+    private static void explore(int v, ArrayList<Integer>[] adj) {
+    	visited[v] = true;
+    	for(int w : adj[v]) {
+    		if(!visited[w]) {
+    			explore(w, adj);
+    		}
+    	}
     }
 
     public static void main(String[] args) {
@@ -25,6 +41,7 @@ public class ConnectedComponents {
             adj[x - 1].add(y - 1);
             adj[y - 1].add(x - 1);
         }
+        visited = new boolean[n];
         System.out.println(numberOfComponents(adj));
     }
 }

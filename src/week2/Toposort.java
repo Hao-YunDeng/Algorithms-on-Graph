@@ -9,11 +9,29 @@ public class Toposort {
         int used[] = new int[adj.length];
         ArrayList<Integer> order = new ArrayList<Integer>();
         //write your code here
+        dfs(adj, used, order);
+        Collections.reverse(order);
         return order;
     }
 
-    private static void dfs(ArrayList<Integer>[] adj, int[] used, ArrayList<Integer> order, int s) {
-      //write your code here
+    private static void dfs(ArrayList<Integer>[] adj, int[] used, ArrayList<Integer> order) {
+    	//write your code here
+    	for(int i = 0; i < adj.length; i++) {
+    		if(used[i] == 0) {
+    			explore(adj, used, order, i);
+    		}
+    	}
+    }
+    
+    private static void explore(ArrayList<Integer>[] adj, int[] used, ArrayList<Integer> order, int s) {
+    	//write your code here
+    	used[s] = 1;
+    	for(int w : adj[s]) {
+    		if(used[w] == 0) {
+    			explore(adj, used, order, w);
+    		}
+    	}
+    	order.add(s);
     }
 
     public static void main(String[] args) {
