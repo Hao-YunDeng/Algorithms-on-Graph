@@ -8,7 +8,23 @@ import java.util.Scanner;
 public class Bipartite {
     private static int bipartite(ArrayList<Integer>[] adj) {
         //write your code here
-        return -1;
+    	int[] color = new int[adj.length];
+    	color[0] = 1;
+    	Queue<Integer> q = new LinkedList<>();
+    	q.add(0);
+    	while(!q.isEmpty()) {
+    		int v = q.remove();
+    		for(int u : adj[v]) {
+    			if(color[u] == 0) {
+    				q.add(u);
+    				color[u] = - color[v];
+    			}
+    			else if(color[u] == color[v]) {
+    				return 0;
+    			}
+    		}
+    	}
+        return 1;
     }
 
     public static void main(String[] args) {

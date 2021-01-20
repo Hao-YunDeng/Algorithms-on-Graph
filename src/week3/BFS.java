@@ -8,8 +8,28 @@ import java.util.Scanner;
 public class BFS {
     private static int distance(ArrayList<Integer>[] adj, int s, int t) {
         //write your code here
-        return -1;
+    	int[] dist = new int[adj.length];
+    	//int[] prev = new int[adj.length];
+    	for(int i = 0; i < dist.length; i++) {
+    		dist[i] = - 1;
+    	}
+    	dist[s] = 0;
+    	Queue<Integer> q = new LinkedList<>();
+    	q.add(s);
+    	while(!q.isEmpty()) {
+    		int v = q.remove();
+    		for(int u : adj[v]) {
+    			if(dist[u] == - 1) {
+    				q.add(u);
+    				dist[u] = dist[v] + 1;
+    				//prev[u] = v;
+    			}
+    		}
+    	};
+    	
+        return dist[t];
     }
+    
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
