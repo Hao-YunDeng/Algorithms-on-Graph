@@ -25,7 +25,7 @@ public class BFS {
     				//prev[u] = v;
     			}
     		}
-    	};
+    	}
     	
         return dist[t];
     }

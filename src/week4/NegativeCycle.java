@@ -6,6 +6,25 @@ import java.util.Scanner;
 public class NegativeCycle {
     private static int negativeCycle(ArrayList<Integer>[] adj, ArrayList<Integer>[] cost) {
         // write your code here
+    	int[] dist = new int[adj.length];
+    	for(int i = 0; i < dist.length; i++) {
+    		dist[i] = Integer.MAX_VALUE / 2;
+    	}
+    	//Just take vertex 0 as the starting point
+    	dist[0] = 0;
+    	for(int i = 0; i < adj.length; i++) {
+    		for(int u = 0; u < adj.length; u++) {
+    			for(int vIdx = 0; vIdx < adj[u].size(); vIdx++) {
+    				int v = adj[u].get(vIdx);
+    				if(dist[v] > dist[u] + cost[u].get(vIdx)) {
+    					dist[v] = dist[u] + cost[u].get(vIdx);
+    					if(i == adj.length - 1) {
+    						return 1;
+    					}
+    				}
+    			}
+    		}
+    	}
         return 0;
     }
 
