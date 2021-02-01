@@ -41,7 +41,7 @@ public class ShortestPaths {
     					distance[v] = distance[u] + cost[u].get(vIdx);
     					if(i == adj.length - 1) {
     						set.add(v);
-    						shortest[v] = 0;//Doesn't seem to be necessary 
+    						shortest[v] = 0; 
     					}
     				}
     			}

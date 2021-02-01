@@ -50,7 +50,7 @@ public class Dijkstra {
     		//System.out.println(u.index + 1);
     		//We only process vertex u if u is in the set
     		//otherwise it is just an extra copy
-    		if(set.contains(u.index)) {
+    		//if(set.contains(u.index)) { //
     			set.remove(u.index);
         		for(int i = 0; i < adj[u.index].size(); i++) {
         			int v =  adj[u.index].get(i);
@@ -63,7 +63,7 @@ public class Dijkstra {
         				//Later we will encounter the extra copy, and just discard it from pq
         			}
         		}
-    		}   		
+    		//}   		
     	}
     	//Haoyun: remember 
     	return (dist[t] < Integer.MAX_VALUE / 2) ? dist[t]: - 1;
